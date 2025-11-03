@@ -1,0 +1,17 @@
+{
+  "main_compare_file_path": "D:\\Work\\Python\\ExcelCompare\\e1.xlsx",
+  "sub_compare_file_path": "D:\\Work\\Python\\ExcelCompare\\e2.xlsx",
+  "output_path": "D:\\Work\\Python\\ExcelCompare",
+  "skip_lines": 3,
+  "skip_both": true,
+  "unique_columns": [
+    "部门",
+    "系统名称",
+    "系统名称2"
+  ],
+  "compare_columns": [
+    "阶段1",
+    "阶段2",
+    "阶段3"
+  ]
+}
