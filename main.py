@@ -16,6 +16,7 @@ def_config_file_name = 'config.json'
 config = None
 compared_sheet_name = []
 
+
 @dataclass
 class ColumnConfig:
     name: str = None
@@ -46,7 +47,7 @@ class SheetConfig:
                    compare_columns=compare_columns,
                    index=json_data.get('index'),
                    name=json_data.get('name'),
-                   skip_lines=json_data.get('skip_lines')
+                   skip_lines=json_data.get('skip_lines') or 0
                    )
 
 
@@ -112,7 +113,6 @@ def compare_sheet(sheet_config: SheetConfig):
 
         main_sheet_data = get_sheet_data(main_sheet, sheet_config)
         sub_sheet_data = get_sheet_data(sub_sheet, sheet_config)
-
         workbook = openpyxl.load_workbook(config.result_file_ptah)
 
         if isinstance(sheet_index, str):
@@ -166,11 +166,13 @@ def compare_sheet(sheet_config: SheetConfig):
                         result_sheet.cell(row=i + 2, column=2, value="不一致")
                         df_count += 1
                         for j in range(0, len(main_sheet_data["compare_values"][i])):
-                            if main_sheet_data["compare_values"][i][j] != sub_sheet_data["compare_values"][i][j]:
+                            main_sheet_data_compare_value = main_sheet_data["compare_values"][i][j]
+                            sub_sheet_data_compare_value = sub_sheet_data["compare_values"][index][j]
+                            if main_sheet_data_compare_value != sub_sheet_data_compare_value:
                                 cell = result_sheet.cell(row=i + 2, column=main_sheet_data["compare_indices"][j] + 3)
                                 cell.fill = PatternFill(start_color="FFFF00", end_color="FFFF00", fill_type="solid")
                                 cell.comment = Comment(
-                                    f"当前值：{main_sheet_data["compare_values"][i][j]}\r\n他表值：{sub_sheet_data["compare_values"][i][j]}",
+                                    f"当前值：{main_sheet_data_compare_value or '空'}\r\n他表值：{sub_sheet_data_compare_value or '空'}",
                                     "<System>")
             except ValueError:
                 result_sheet.cell(row=i + 2, column=2, value="他表缺失")
@@ -216,6 +218,7 @@ def compare_sheet(sheet_config: SheetConfig):
     except KeyError as e:
         print(f"A required column was not found. Please check your column names. Details: {e}")
     except Exception as e:
+        traceback.print_exc()
         print(f"An unexpected error occurred: {e}")
 
 
@@ -376,4 +379,5 @@ if __name__ == "__main__":
         compare()
     except Exception as ex:
         print(ex)
+        traceback.print_exc()
         sys.exit(1)
