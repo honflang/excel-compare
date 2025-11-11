@@ -1,17 +1,103 @@
 {
-  "main_compare_file_path": "D:\\Work\\Python\\ExcelCompare\\e1.xlsx",
-  "sub_compare_file_path": "D:\\Work\\Python\\ExcelCompare\\e2.xlsx",
-  "output_path": "D:\\Work\\Python\\ExcelCompare",
-  "skip_lines": 3,
-  "skip_both": true,
-  "unique_columns": [
-    "部门",
-    "系统名称",
-    "系统名称2"
-  ],
-  "compare_columns": [
-    "阶段1",
-    "阶段2",
-    "阶段3"
-  ]
+    "main_compare_file_path": "D:\\Github\\excel-compare\\e1.xlsx",
+    "sub_compare_file_path": "D:\\Github\\excel-compare\\e2.xlsx",
+    "output_path": "D:\\Github\\excel-compare",
+    "skip_both": true,
+    "sheets": [
+        {
+            "index": 1,
+            "name": "Sheet1",
+            "skip_lines": 0,
+            "unique_columns": [
+                {
+                    "name": "部门",
+                    "sub": [
+                        null,
+                        -2
+                    ]
+                },
+                "系统"
+            ],
+            "compare_columns": [
+                {
+                    "name": "状态1",
+                    "sub": [
+                        2
+                    ]
+                },
+                {
+                    "name": "状态2",
+                    "sub": [
+                        1
+                    ]
+                }
+            ]
+        },
+        {
+            "index": 0,
+            "skip_lines": 3,
+            "unique_columns": [
+                "部门",
+                "系统名称",
+                "系统名称2"
+            ],
+            "compare_columns": [
+                "阶段1",
+                "阶段2",
+                "阶段3"
+            ]
+        },
+        {
+            "name": "Sheet1",
+            "unique_columns": [
+                "部门",
+                "系统名称",
+                "系统名称2"
+            ],
+            "compare_columns": [
+                "阶段1",
+                "阶段2",
+                "阶段3"
+            ]
+        },
+        {
+            "unique_columns": [
+                "部门",
+                "系统名称",
+                "系统名称2"
+            ],
+            "compare_columns": [
+                "阶段1",
+                "阶段2",
+                "阶段3"
+            ]
+        },
+        {
+            "index": -1,
+            "unique_columns": [
+                "部门",
+                "系统名称",
+                "系统名称2"
+            ],
+            "compare_columns": [
+                "阶段1",
+                "阶段2",
+                "阶段3"
+            ]
+        },
+        {
+            "index": -1,
+            "name": "S1",
+            "unique_columns": [
+                "部门",
+                "系统名称",
+                "系统名称2"
+            ],
+            "compare_columns": [
+                "阶段1",
+                "阶段2",
+                "阶段3"
+            ]
+        }
+    ]
 }
