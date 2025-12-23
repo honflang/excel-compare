@@ -6,6 +6,7 @@ import traceback
 from copy import copy
 from dataclasses import dataclass
 from datetime import datetime
+from pathlib import Path
 
 import openpyxl
 import pandas as pd
@@ -293,22 +294,6 @@ def read_excel(filename, index):
         return None
 
 
-def get_filename_from_path(full_path):
-    """
-    使用 os.path.basename() 从完整路径中获取文件名。
-
-    Args:
-        full_path (str): 完整的文件路径字符串。
-
-    Returns:
-        str: 文件名部分。
-    """
-    if not isinstance(full_path, str):
-        raise TypeError("输入必须是字符串。")
-
-    return os.path.basename(full_path)
-
-
 def load_config(file_path=None):
     if file_path is None:
         file_path = def_config_file_name
@@ -316,15 +301,12 @@ def load_config(file_path=None):
     with open(file_path, 'r', encoding='utf-8') as f:
         json_data = json.load(f)
     new_config = Config.from_json(json_data)
-    main_compare_file_name = get_filename_from_path(new_config.main_compare_file_path)
+    file_path = Path(new_config.main_compare_file_path)
     new_config.result_file_ptah = (complete_file_path(new_config.output_path) + "compared-"
-                                   + main_compare_file_name.split(
-                '.')[0]
-                                   + datetime.now().strftime(
-                "-%Y%m%d%H%M%S.")
-                                   + main_compare_file_name.split(
-                '.')[1])
-    # print(f"Loaded config : {new_config}")
+                                   + file_path.stem
+                                   + datetime.now().strftime("-%Y%m%d%H%M%S")
+                                   + file_path.suffix)
+    print(f"Loaded config : {new_config}")
     return new_config
 
 
