@@ -306,7 +306,7 @@ def load_config(file_path=None):
                                    + file_path.stem
                                    + datetime.now().strftime("-%Y%m%d%H%M%S")
                                    + file_path.suffix)
-    print(f"Loaded config : {new_config}")
+    # print(f"Loaded config : {new_config}")
     return new_config
 
 
