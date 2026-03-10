@@ -1,5 +1,4 @@
 import json
-import os
 import shutil
 import sys
 import traceback
@@ -288,7 +287,7 @@ def complete_file_path(path=""):
 
 def read_excel(filename, index):
     try:
-        return pd.read_excel(filename, sheet_name=index)
+        return pd.read_excel(filename, sheet_name=index, dtype=str)
     except Exception as e:
         # print(f"  --  An unexpected error occurred: {e}")
         return None
